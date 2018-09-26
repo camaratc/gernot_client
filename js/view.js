@@ -1,11 +1,29 @@
 const notifier = require('node-notifier');
-const path = require('path');
-const http = require('http');
 const axios = require('axios');
 
 const minutes = 0.25, theInterval = minutes * 60 * 1000;
 
-function categoria(tag){
+let recentNotifications = [];
+
+function notificationPool(notification){
+    for(let i = 0; i < recentNotifications.length; i++){
+        if(notification === recentNotifications[i]){
+            return;
+        }
+    }
+
+    if(recentNotifications.length >= 10){
+        recentNotifications.shift();
+        recentNotifications.push(notification);
+    }
+    else{
+        recentNotifications.push(notification);
+    }
+
+    return recentNotifications;
+}
+
+function setTag(tag){
     if(tag === 0) return "Erro";
     else if(tag === 1) return "Aviso";
     else if(tag === 2) return "Recomendação";
@@ -16,17 +34,31 @@ function searchNotification(){
 
     .then(response => {
         for(let i = 0; i < response.data.length; i++){
+            let notify = true;
+
             let item = response.data[i].fields;
 
-            notifier.notify ({
-                title: item.title,
-                message: item.message,
-                sound: true,
-                wait: true            
-            }, (err, response) => {
-                console.log(err);    
-            });
+            for(let j = 0; j < recentNotifications.length; j++){
+                if(response.data[i].pk === recentNotifications[j]){
+                    notify = false;
+                }
+            }
+
+            if(notify){
+                notifier.notify ({
+                    title: item.title,
+                    message: item.message,
+                    sound: true,
+                    wait: true            
+                }, (err, response) => {
+                    // console.log(err);    
+                });
+            }
+
+            notificationPool(response.data[i].pk);
         }
+
+        console.log(`Lista de Notificações: ${recentNotifications}`);
     })
     .catch(error => {
         console.log(error);
@@ -35,6 +67,5 @@ function searchNotification(){
 
 setInterval(() => {
     console.log("Realizando checagem...");
-    document.getElementById('content').innerHTML += 'Realizando Checagem...<br />';
     searchNotification();
 }, theInterval);

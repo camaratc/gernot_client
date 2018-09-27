@@ -1,7 +1,7 @@
 const notifier = require('node-notifier');
 const axios = require('axios');
 
-const minutes = 0.25, theInterval = minutes * 60 * 1000;
+const minutes = 0.1, theInterval = minutes * 60 * 1000;
 
 let recentNotifications = [];
 
@@ -58,7 +58,7 @@ function searchNotification(){
             notificationPool(response.data[i].pk);
         }
 
-        console.log(`Lista de Notificações: ${recentNotifications}`);
+        // console.log(`Lista de Notificações: ${recentNotifications}`);
     })
     .catch(error => {
         console.log(error);
@@ -66,6 +66,6 @@ function searchNotification(){
 }
 
 setInterval(() => {
-    console.log("Realizando checagem...");
+    // console.log("Realizando checagem...");
     searchNotification();
 }, theInterval);

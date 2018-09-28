@@ -30,7 +30,7 @@ function setTag(tag){
 }
 
 function searchNotification(){
-    axios.get('http://127.0.0.1:8000/api/notification/')
+    axios.get('http://192.168.1.253:8030/api/notification/')
 
     .then(response => {
         for(let i = 0; i < response.data.length; i++){

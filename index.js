@@ -1,6 +1,7 @@
 const {app, BrowserWindow, Tray} = require('electron');
 
 let mainWindow;
+let tray = null;
 
 function createWindow () {
   mainWindow = new BrowserWindow({width: 800, height: 600});
@@ -14,8 +15,9 @@ function createWindow () {
 // app.on('ready', createWindow);
 
 app.on('ready', () => {
-  let tray = new Tray('assets/img/destaque.jpg');
-  tray.setToolTip('Rodando em segundo plano');
+  tray = new Tray('assets/img/destaque.jpg');
+  tray.setTitle('Gernot')
+  tray.setToolTip('Nenhuma notificação no momento.');
 });
 
 
@@ -65,7 +67,7 @@ function setTag(tag){
 }
 
 function searchNotification(){
-    axios.get('http://127.0.0.1:8000/api/notification/')
+    axios.get('http://192.168.1.253:8030/api/notification/')
 
     .then(response => {
         for(let i = 0; i < response.data.length; i++){

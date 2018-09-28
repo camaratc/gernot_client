@@ -15,9 +15,15 @@ function createWindow () {
 // app.on('ready', createWindow);
 
 app.on('ready', () => {
-  tray = new Tray('../assets/img/destaque.jpg');
-  tray.setTitle('Gernot')
-  tray.setToolTip('Nenhuma notificação no momento.');
+    /**
+     * Caminho Logo:
+     * 
+     * npm start: 'assets/img/logo.png'
+     * app.exe: '../assets/img/logo.png'
+     */
+    tray = new Tray('../assets/img/logo.png'); 
+    tray.setTitle('Gernot')
+    tray.setToolTip('Nenhuma notificação no momento.');
 });
 
 

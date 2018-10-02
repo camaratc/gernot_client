@@ -98,10 +98,10 @@ function searchNotification(){
                 });
             }
 
-            notificationPool(response.data[i].pk);
+            setTimeout(() => {
+                notificationPool(response.data[i].pk);
+            }, 3000);
         }
-
-        // console.log(`Lista de Notificações: ${recentNotifications}`);
     })
     .catch(error => {
         console.log(error);
@@ -109,6 +109,5 @@ function searchNotification(){
 }
 
 setInterval(() => {
-    // console.log("Realizando checagem...");
     searchNotification();
 }, theInterval);

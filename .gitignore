@@ -1,3 +1,4 @@
 teste-win32-x64/
 node_modules/
-build-win32-x64/
+build/
+notificacoes-win32-x64/

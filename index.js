@@ -22,7 +22,7 @@ app.on('ready', () => {
      * app.exe: '../assets/img/logo.png'
      */
     tray = new Tray('../assets/img/logo.png'); 
-    tray.setTitle('Gernot')
+    tray.setTitle('Notify')
     tray.setToolTip('Nenhuma notificação no momento.');
 });
 
@@ -73,7 +73,7 @@ function setTag(tag){
 }
 
 function searchNotification(){
-    axios.get('http://192.168.1.253:8030/api/notification/')
+    axios.get('http://notify.cmtc.org:8030/api/notification/')
 
     .then(response => {
         for(let i = 0; i < response.data.length; i++){

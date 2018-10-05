@@ -1,6 +1,6 @@
 # Instalação #
 
-1 - Instalar o nodjs e o npm;
+1 - Instalar o nodejs e o npm;
 
 2 - Instalar os módulos: ```npm install```
 

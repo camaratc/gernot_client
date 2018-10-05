@@ -6,8 +6,7 @@
 
 3 - Iniciar a aplicação: ```npm start```
 
-<hr />
-# Gerar Arquivo .exe #
+## Gerar Arquivo .exe ##
 
 1 - installar o Electron Packager globalmente: ```npm install -g electron-packager```
 

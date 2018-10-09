@@ -8,6 +8,6 @@
 
 ## Gerar Arquivo .exe ##
 
-1 - installar o Electron Packager globalmente: ```npm install -g electron-packager```
+1 - Instalar o Electron Packager globalmente: ```npm install -g electron-packager```
 
-2 - Gerar o arquivo .exe com o comando: ```electron-packager \caminho\da\aplicação nome_da_aplicação --platform=win32 --arch=x64 --overwrite```
+2 - Gerar o arquivo .exe com o comando: ```electron-packager \caminho\da\aplicação nome_da_aplicação --platform=win32 --arch=x64 --overwrite``` (_Para Linux usar '/' no caminho_).
